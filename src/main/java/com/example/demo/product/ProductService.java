@@ -11,5 +11,7 @@ public interface ProductService {
     Product getById(long id);
     Product getByName(String name);
 
+    List<Product> findAllByName(String input);
+
 }
 

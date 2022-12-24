@@ -9,6 +9,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class VanServiceImpl implements VanService{
+
     private final VanRepository repository;
 
     @Override

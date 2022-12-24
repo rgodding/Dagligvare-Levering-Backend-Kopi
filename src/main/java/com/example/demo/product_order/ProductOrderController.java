@@ -27,7 +27,7 @@ public class ProductOrderController {
 
     private final ProductOrderService service;
 
-    @GetMapping("/find-delivery-product-order/{id}")
+    @GetMapping("/find-order-by-delivery-id/{id}")
     public ResponseEntity<List<ProductOrderDto>> findDeliveryProductOrder(@PathVariable(name = "id") Long id){
         List<ProductOrder> request = service.findByDeliveryId(id);
 
@@ -51,6 +51,8 @@ public class ProductOrderController {
         return ResponseEntity.ok().body(response);
     }
 
+
+    //Core Methods
     @GetMapping
     public ResponseEntity<List<ProductOrderDto>> findAll() {
         List<ProductOrderDto> objects = service.getAll().stream().map(object -> modelMapper.map(object, ProductOrderDto.class))

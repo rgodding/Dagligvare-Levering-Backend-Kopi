@@ -22,6 +22,8 @@ public class VanController {
 
     private final VanService service;
 
+
+    // Core Methods
     @GetMapping
     public ResponseEntity<List<VanDto>> findAll() {
         List<VanDto> objects = service.getAll().stream().map(object -> modelMapper.map(object, VanDto.class))

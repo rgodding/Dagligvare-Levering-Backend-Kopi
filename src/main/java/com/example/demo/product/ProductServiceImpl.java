@@ -46,8 +46,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product getByName(String name){
-        Product object = repository.findByName(name);
-        return object;
+        return repository.findByName(name);
+    }
+
+    @Override
+    public List<Product> findAllByName(String input) {
+        return repository.findAllByNameContainingIgnoreCase(input);
     }
 
 }

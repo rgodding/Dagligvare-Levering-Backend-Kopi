@@ -24,6 +24,24 @@ public class ProductController {
 
     private final ProductService service;
 
+
+    @GetMapping("/find-by-name/{name}")
+    public ResponseEntity<ProductDto> getByName(@PathVariable(name = "name") String name){
+        Product object = service.getByName(name);
+        // convert entity to DTO
+        ProductDto response = modelMapper.map(object, ProductDto.class);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("/find-all-by-name/{input}")
+    public ResponseEntity<List<ProductDto>> getByNameContainingInput(@PathVariable(name = "input") String input){
+        System.out.println("FINDING ALL BY(" + input + ")");
+        List<ProductDto> objects = service.findAllByName(input).stream().map(object -> modelMapper.map(object, ProductDto.class))
+                .toList();
+        return ResponseEntity.ok().body(objects);
+    }
+
+    //Core Methods
     @GetMapping
     public ResponseEntity<List<ProductDto>> findAll() {
         List<ProductDto> objects = service.getAll().stream().map(object -> modelMapper.map(object, ProductDto.class))
@@ -34,16 +52,6 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<ProductDto> getById(@PathVariable(name = "id") Long id){
         Product object = service.getById(id);
-
-        // convert entity to DTO
-        ProductDto response = modelMapper.map(object, ProductDto.class);
-
-        return ResponseEntity.ok().body(response);
-    }
-
-    @GetMapping("name/{name}")
-    public ResponseEntity<ProductDto> getByName(@PathVariable(name = "name") String name){
-        Product object = service.getByName(name);
 
         // convert entity to DTO
         ProductDto response = modelMapper.map(object, ProductDto.class);

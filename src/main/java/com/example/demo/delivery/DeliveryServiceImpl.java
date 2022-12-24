@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class DeliveryServiceImpl implements DeliveryService {
+
     private final DeliveryRepository repository;
 
     @Override
