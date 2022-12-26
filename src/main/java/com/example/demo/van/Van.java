@@ -29,7 +29,7 @@ public class Van {
     @Column(name = "CAPACITY")
     private double capacity;
 
-    @OneToMany(mappedBy = "van", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "van", cascade = CascadeType.ALL,orphanRemoval = false)
     private List<Delivery> deliveries = new ArrayList<>();
 
     public Van(String brand, String model, double capacity) {

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -30,7 +31,7 @@ public class Delivery {
     @Column(name = "DESTINATION")
     private String destination;
 
-    @OneToMany(mappedBy = "delivery", cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "delivery", cascade = CascadeType.ALL,orphanRemoval = false)
     private List<ProductOrder> productOrders = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -61,8 +62,16 @@ public class Delivery {
         return this;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Delivery delivery = (Delivery) o;
+        return Objects.equals(deliveryDate, delivery.deliveryDate) && Objects.equals(fromWarehouse, delivery.fromWarehouse) && Objects.equals(destination, delivery.destination) && Objects.equals(productOrders, delivery.productOrders) && Objects.equals(van, delivery.van);
+    }
 
-
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(deliveryDate, fromWarehouse, destination, productOrders, van);
+    }
 }

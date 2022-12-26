@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @CrossOrigin
-@RequestMapping("/api/v1/productorder")
+@RequestMapping("/api/v1/order")
 public class ProductOrderController {
 
     @Autowired
