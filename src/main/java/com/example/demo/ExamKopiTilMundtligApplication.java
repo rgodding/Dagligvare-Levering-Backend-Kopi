@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
@@ -21,7 +22,7 @@ import java.util.List;
 
 @Slf4j
 @AllArgsConstructor
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.example.demo")
 public class ExamKopiTilMundtligApplication {
 
     @Bean
@@ -43,7 +44,6 @@ public class ExamKopiTilMundtligApplication {
             Product: name(String), price(double), wieight(double/float?)
             ProductOrder: quantity(int)
             Van: brand(String), model(String), capacity(Double/Float? Kg ?)
-             */
             log.info("Initializing CommandLineRunner");
 
             log.info("Initializing Deliveries");
@@ -110,7 +110,7 @@ public class ExamKopiTilMundtligApplication {
             Delivery tempDelivery1 = deliveries.get(0);
             tempDelivery1.setVan(vans.get(0));
             deliveryRepository.save(tempDelivery1);
-
+             */
         };
     }
 
